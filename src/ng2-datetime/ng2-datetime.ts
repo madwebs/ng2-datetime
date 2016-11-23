@@ -5,6 +5,8 @@ import {
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { TimepickerEvent } from './timepicker-event-interface';
 
+declare var jQuery : any;
+
 @Component({
     selector: 'datetime',
     template: `

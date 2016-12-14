@@ -156,6 +156,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                         // get hours/minutes
                         newDate.setHours(this.date.getHours());
                         newDate.setMinutes(this.date.getMinutes());
+                        newDate.setSeconds(this.date.getSeconds());
                     }
 
                     this.date = newDate;
@@ -190,6 +191,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
 
                     this.date.setHours(hours);
                     this.date.setMinutes(e.time.minutes);
+                    this.date.setSeconds(e.time.seconds);
                     this.dateChange.emit(this.date);
                 });
         } else if (this.timepickerOptions === false) {
@@ -212,7 +214,8 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
             const meridian = date.getHours() >= 12 ? ' PM' : ' AM';
             const time =
                 this.pad(hours) + ':' +
-                this.pad(this.date.getMinutes()) +
+                this.pad(this.date.getMinutes() + ':' +
+                this.pad(this.date.getSeconds())) +
                 (this.timepickerOptions.showMeridian || this.timepickerOptions.showMeridian === undefined
                     ? meridian : '');
             this.timepicker.timepicker('setTime', time);
